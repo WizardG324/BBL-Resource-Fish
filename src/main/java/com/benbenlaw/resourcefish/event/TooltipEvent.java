@@ -28,9 +28,9 @@ public class TooltipEvent {
 
         if (stack.is(ResourceFishBlocks.AQUARIUM.get().asItem())) {
             if (Screen.hasShiftDown()) {
-                event.getTooltipElements().set(1, Either.left(Component.translatable("tooltip.resourcefish.aquarium").withStyle(ChatFormatting.YELLOW)));
+                event.getTooltipElements().add(1, Either.left(Component.translatable("tooltip.resourcefish.aquarium").withStyle(ChatFormatting.YELLOW)));
             } else {
-                event.getTooltipElements().set(1, Either.left(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW)));
+                event.getTooltipElements().add(1, Either.left(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW)));
             }
         }
 
