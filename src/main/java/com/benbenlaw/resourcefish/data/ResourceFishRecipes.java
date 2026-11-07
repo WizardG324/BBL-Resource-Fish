@@ -534,7 +534,21 @@ public class ResourceFishRecipes extends RecipeProvider {
                 .unlockedBy("has_item", has(ResourceFishBlocks.TANK_CONTROLLER))
                 .save(consumer);
 
-                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.BASIC_FISH_FOOD, 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.BREEDING_TANK, 1)
+                .pattern("ABA")
+                .define('A', ResourceFishBlocks.AQUARIUM)
+                .define('B', ResourceFishItems.BREEDING_UPGRADE)
+                .unlockedBy("has_item", has(ResourceFishBlocks.AQUARIUM))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishBlocks.INFUSING_TANK, 1)
+                .pattern("ABA")
+                .define('A', ResourceFishBlocks.AQUARIUM)
+                .define('B', ResourceFishItems.INFUSING_UPGRADE)
+                .unlockedBy("has_item", has(ResourceFishBlocks.AQUARIUM))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ResourceFishItems.BASIC_FISH_FOOD, 6)
                 .pattern(" A ")
                 .pattern("A A")
                 .pattern(" A ")

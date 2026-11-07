@@ -56,6 +56,8 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addBlockTranslation("tank_controller_range", "Tank Range");
         addBlockTranslation("nest", "Resource Fish Nest");
         addBlockTranslation("aquarium", "Aquarium");
+        addBlockTranslation("breeding_tank", "Fish Breeding Tank");
+        addBlockTranslation("infusing_tank", "Fish Infusing Tank");
 
         //Recipes
         addRecipeTranslation("caviar_processor", "Caviar Processor");
@@ -78,6 +80,14 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish. When installed fish will not produce caviar");
         addTooltipTranslation("round_robin_upgrade", "Items inserted into the Caviar Processor will be distributed evenly across all input slots");
         addTooltipTranslation("aquarium", "Use a Bucket with a Resource Fish inside to store and produce Caviar");
+        addTooltipTranslation("breeding_tank", "Holds 2 Resource Fish to breed. Right click with breeding food to feed, and with a bucket to take out a bred fish(or parents). Empty hand collects bones.");
+        addTooltipTranslation("infusing_tank", "Holds 1 Resource Fish to infuse. Right click with the infusing items to input them, and with a bucket to take the fish out. Empty hand collects bones, sneak to take back the items.");
+
+        //Jade
+        add("jade.resourcefish.fish", "Fish: %s");
+        add("jade.resourcefish.parents", "Parents: %s");
+        add("jade.resourcefish.bred", "Bred: %s");
+        add("config.jade.plugin_resourcefish.fish_tanks", "Fish Tank Contents");
 
         //Entity
         add("entity.resourcefish.resource_fish", "%s Resource Fish");

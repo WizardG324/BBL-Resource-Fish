@@ -3,6 +3,13 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.5.3
+- Added the Fish Breeding Tank, a single block used to breed fish
+- Added the Fish Infusing Tank, a block similar to the breeding tank, but instead infuses fish
+- Added a config option to disable fish from naturally spawning
+- Fixed duplicating fish when right clicking an aquarium with specific buckets
+- Fixed certain fish being unobtainable, when breeding the same fish produces 2 or more different outputs
+
 1.5.2
 - Fixed a crash when hovering over the aquarium
 

@@ -117,7 +117,7 @@ public class ClientEvents {
                 (state, level, pos, tintIndex) -> (level != null && pos != null)
                         ? BiomeColors.getAverageWaterColor(level, pos)
                         : DEFAULT_WATER_COLOR,
-                ResourceFishBlocks.AQUARIUM.get());
+                ResourceFishBlocks.AQUARIUM.get(), ResourceFishBlocks.BREEDING_TANK.get(), ResourceFishBlocks.INFUSING_TANK.get());
     }
 
     @SubscribeEvent
@@ -125,7 +125,7 @@ public class ClientEvents {
         // Block colours don't apply to the item form, so tint the aquarium's water in inventories too.
         event.register(
                 (stack, tintIndex) -> tintIndex == 0 ? DEFAULT_WATER_COLOR : -1,
-                ResourceFishBlocks.AQUARIUM.get());
+                ResourceFishBlocks.AQUARIUM.get(), ResourceFishBlocks.BREEDING_TANK.get(), ResourceFishBlocks.INFUSING_TANK.get());
     }
 
 }

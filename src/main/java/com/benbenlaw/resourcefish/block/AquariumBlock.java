@@ -68,7 +68,11 @@ public class AquariumBlock extends BaseEntityBlock {
         ResourceType current = entity.getFishType();
         ResourceType held = bucketedFishType(item);
 
-        if (held == ResourceType.NONE && (current == ResourceType.NONE || !item.is(Items.BUCKET)))
+        if (current == ResourceType.NONE && item.is(Items.WATER_BUCKET))
+            return ItemInteractionResult.FAIL;
+
+        if (held == ResourceType.NONE
+                && (current == ResourceType.NONE || !(item.is(Items.BUCKET) || item.is(Items.WATER_BUCKET))))
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         if (level.isClientSide)
@@ -81,18 +85,22 @@ public class AquariumBlock extends BaseEntityBlock {
         return ItemInteractionResult.sidedSuccess(false);
     }
 
-    private static ItemStack emptyBucketFor(ItemStack usedBucket) {
+    static ItemStack emptyBucketFor(ItemStack usedBucket) {
         ItemStack empty = usedBucket.getCraftingRemainingItem();
-        return empty.isEmpty() ? new ItemStack(Items.BUCKET) : empty;
+        if (empty.isEmpty())
+            return new ItemStack(Items.BUCKET);
+
+        empty.remove(ResourceFishDataComponents.FISH_TYPE.get());
+        return empty;
     }
 
-    private static ResourceType bucketedFishType(ItemStack stack) {
+    static ResourceType bucketedFishType(ItemStack stack) {
         @Nullable
         ResourceLocation id = stack.get(ResourceFishDataComponents.FISH_TYPE.get());
         return id == null ? ResourceType.NONE : ResourceType.REGISTRY.getOrDefault(id, ResourceType.NONE);
     }
 
-    private static ItemStack filledBucketFor(ResourceType type) {
+    public static ItemStack filledBucketFor(ResourceType type) {
         ItemStack bucket = new ItemStack(ResourceFishItems.RESOURCE_FISH_BUCKET.get());
         bucket.set(ResourceFishDataComponents.FISH_TYPE.get(), type.getId());
         CustomData.update(DataComponents.BUCKET_ENTITY_DATA, bucket,

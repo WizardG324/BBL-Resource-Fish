@@ -29,7 +29,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -213,10 +216,8 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
         if (inventoryChanged) {
             cachedInventory = getRecipeInput();
 
-            Optional<RecipeHolder<FishBreedingRecipe>> breedingMatch =
-                    level.getRecipeManager().getRecipeFor(FishBreedingRecipe.Type.INSTANCE, cachedInventory, level);
-            Optional<RecipeHolder<FishInfusingRecipe>> infusingMatch =
-                    level.getRecipeManager().getRecipeFor(FishInfusingRecipe.Type.INSTANCE, cachedInventory, level);
+            Optional<RecipeHolder<FishBreedingRecipe>> breedingMatch = randomMatch(FishBreedingRecipe.Type.INSTANCE);
+            Optional<RecipeHolder<FishInfusingRecipe>> infusingMatch = randomMatch(FishInfusingRecipe.Type.INSTANCE);
 
             if (breedingMatch.isPresent()) {
                 activeRecipe = ActiveRecipeType.BREEDING;
@@ -305,6 +306,11 @@ public class TankControllerBlockEntity extends SyncableBlockEntity {
             previouslyAllowedFish.clear();
             previouslyAllowedFish.addAll(currentAllowedFish);
         }
+    }
+
+    private <T extends Recipe<RecipeInput>> Optional<RecipeHolder<T>> randomMatch(RecipeType<T> type) {
+        List<RecipeHolder<T>> matches = level.getRecipeManager().getRecipesFor(type, cachedInventory, level);
+        return matches.isEmpty() ? Optional.empty() : Optional.of(matches.get(level.random.nextInt(matches.size())));
     }
 
     private boolean hasBreedingUpgrade() {

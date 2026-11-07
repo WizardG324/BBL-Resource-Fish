@@ -20,6 +20,8 @@ public class ResourceFishLootTableProvider extends VanillaBlockLoot {
         this.dropSelf(ResourceFishBlocks.TANK_CONTROLLER.get());
         this.dropSelf(ResourceFishBlocks.CAVIAR_PROCESSOR.get());
         this.dropSelf(ResourceFishBlocks.AQUARIUM.get());
+        this.dropSelf(ResourceFishBlocks.BREEDING_TANK.get());
+        this.dropSelf(ResourceFishBlocks.INFUSING_TANK.get());
     }
 
     @Override

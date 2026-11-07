@@ -1,6 +1,5 @@
 package com.benbenlaw.resourcefish.renderer;
 
-import com.benbenlaw.resourcefish.block.entity.AquariumBlockEntity;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntities;
 import com.benbenlaw.resourcefish.entities.ResourceFishEntity;
 import com.benbenlaw.resourcefish.util.ResourceType;
@@ -15,33 +14,50 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import java.util.function.Function;
+
 /**
- * Renders the aquarium's fish by reusing the entity's own renderer: a single client-only dummy
- * {@link ResourceFishEntity} is configured to the block's {@link ResourceType} and drawn through the
+ * Renders a tank's fish (one for the aquarium, two for the breeding tank) by reusing the entity's own renderer: a client-only dummy
+ * {@link ResourceFishEntity} per fish is configured to its {@link ResourceType} and drawn through the
  * entity dispatcher, so all colour/pattern logic is inherited for free. The dummy is never added to
  * a level, so it never ticks - we drive its swim animation by hand from the world time.
  */
 @OnlyIn(Dist.CLIENT)
-public class AquariumRenderer implements BlockEntityRenderer<AquariumBlockEntity> {
+public class AquariumRenderer<T extends BlockEntity> implements BlockEntityRenderer<T> {
 
-    private ResourceFishEntity dummy;
-    private ResourceLocation renderedTypeId;
+    private final Function<T, ResourceType[]> fishOf;
+    private final ResourceFishEntity[] dummies;
+    private final ResourceLocation[] renderedTypeIds;
 
-    public AquariumRenderer(BlockEntityRendererProvider.Context context) {
+    private final int adults;
+
+    public AquariumRenderer(int maxFish, int adults, Function<T, ResourceType[]> fishOf) {
+        this.adults = adults;
+        this.fishOf = fishOf;
+        this.dummies = new ResourceFishEntity[maxFish];
+        this.renderedTypeIds = new ResourceLocation[maxFish];
     }
 
     @Override
-    public void render(AquariumBlockEntity be, float partialTick, PoseStack pose, MultiBufferSource buffers,
+    public void render(T be, float partialTick, PoseStack pose, MultiBufferSource buffers,
                        int packedLight, int packedOverlay) {
-        ResourceType type = be.getFishType();
         Level level = be.getLevel();
-        if (type == ResourceType.NONE || level == null)
+        if (level == null)
             return;
+        ResourceType[] types = fishOf.apply(be);
+        for (int i = 0; i < types.length && i < dummies.length; i++) {
+            if (types[i] != ResourceType.NONE)
+                renderFish(be, level, i, types, partialTick, pose, buffers, packedLight);
+        }
+    }
 
-        ResourceFishEntity fish = getOrCreate(level, type);
+    private void renderFish(T be, Level level, int index, ResourceType[] types, float partialTick, PoseStack pose,
+                            MultiBufferSource buffers, int packedLight) {
+        ResourceFishEntity fish = getOrCreate(level, index, types[index]);
 
         long time = level.getGameTime();
         // Per-block phase offset so neighbouring tanks don't swim in lockstep.
@@ -52,11 +68,19 @@ public class AquariumRenderer implements BlockEntityRenderer<AquariumBlockEntity
         // tickCount feeds the fish's built-in sinusoidal sway (see ResourceFishRenderer#setupRotations).
         fish.tickCount = (int) (time + phase);
 
+        boolean fry = index >= adults;
+        // each group (adults, fry) spreads evenly around its own ring
+        int groupSize = fry ? Math.min(types.length, dummies.length) - adults : Math.min(types.length, adults);
+        int slot = fry ? index - adults : index;
+
         pose.pushPose();
-        pose.translate(0.5D, 0.45D, 0.5D);
-        pose.mulPose(Axis.YP.rotationDegrees((age * 2.0F) % 360.0F));  // slow orbit so it faces around
-        pose.translate(0.0D, Mth.sin(age * 0.1F) * 0.05F, 0.0D);       // gentle vertical bob
-        pose.scale(0.6F, 0.6F, 0.6F);
+        pose.translate(0.5D, fry ? 0.08D : 0.45D, 0.5D);
+        float speed = fry ? -3.0F : 2.0F; // fry circle the other way, a bit quicker
+        pose.mulPose(Axis.YP.rotationDegrees((age * speed + 360.0F * slot / groupSize) % 360.0F));
+        float scale = fry ? 0.25F : groupSize == 1 ? 0.6F : 0.45F;
+        double radius = fry ? 0.28D : groupSize == 1 ? 0.0D : 0.2D;
+        pose.translate(radius, Mth.sin(age * 0.1F + index) * (fry ? 0.02F : 0.05F), 0.0D); // gentle bob
+        pose.scale(scale, scale, scale);
 
         EntityRenderDispatcher erd = Minecraft.getInstance().getEntityRenderDispatcher();
         erd.setRenderShadow(false);
@@ -66,20 +90,20 @@ public class AquariumRenderer implements BlockEntityRenderer<AquariumBlockEntity
         pose.popPose();
     }
 
-    private ResourceFishEntity getOrCreate(Level level, ResourceType type) {
-        if (dummy == null || dummy.level() != level) {
-            dummy = new ResourceFishEntity(ResourceFishEntities.RESOURCE_FISH.get(), level) {
+    private ResourceFishEntity getOrCreate(Level level, int index, ResourceType type) {
+        if (dummies[index] == null || dummies[index].level() != level) {
+            dummies[index] = new ResourceFishEntity(ResourceFishEntities.RESOURCE_FISH.get(), level) {
                 @Override
                 public boolean isInWater() {
                     return true; // keep the fish upright; it lives in the tank
                 }
             };
-            renderedTypeId = null;
+            renderedTypeIds[index] = null;
         }
-        if (!type.getId().equals(renderedTypeId)) {
-            dummy.setResourceType(type);
-            renderedTypeId = type.getId();
+        if (!type.getId().equals(renderedTypeIds[index])) {
+            dummies[index].setResourceType(type);
+            renderedTypeIds[index] = type.getId();
         }
-        return dummy;
+        return dummies[index];
     }
 }

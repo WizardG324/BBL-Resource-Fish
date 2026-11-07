@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-16T08:43:02.3207476	Recipes
+// 1.21.1	2026-11-07T11:37:37.6023956	Recipes
 ce53d61a3a5b6d4c7d6f9b61cde767ce8d4e5d0a data/resourcefish/advancement/recipes/breeding/breeding/aluminum.json
 d59b542b7080752d724b039fe5e8695f0842519d data/resourcefish/advancement/recipes/breeding/breeding/amethyst.json
 3385be46e013dd4f826b9d2b987543db948879a8 data/resourcefish/advancement/recipes/breeding/breeding/ancient.json
@@ -204,6 +204,7 @@ bae16a4497dcc284be4ead6b4b60c44fa51ab0cf data/resourcefish/advancement/recipes/i
 30955bb42f348e1b4e8f3f2d5d0d8f0c85980a1c data/resourcefish/advancement/recipes/misc/aquarium.json
 271902ad1856c291a8fec878aaafd65f72ff9b04 data/resourcefish/advancement/recipes/misc/basic_fish_food.json
 55f6a812d2be6e023067ef82cfe3fc8b4b4796ee data/resourcefish/advancement/recipes/misc/basic_mob_fish_food.json
+0cd63a20ac1927c179313fb0a2917017bd496900 data/resourcefish/advancement/recipes/misc/breeding_tank.json
 72c04e0eca38106d7d82c0e9eabd87b9d005b4ce data/resourcefish/advancement/recipes/misc/breeding_upgrade.json
 7cff49378a9cd93f0cf6abc1882fdc1139a36481 data/resourcefish/advancement/recipes/misc/caviar_processor.json
 378e812017c3a4a03f163c1a6a806e42b3041c96 data/resourcefish/advancement/recipes/misc/crystal_fish_food.json
@@ -211,6 +212,7 @@ fa0d80fb1a3288e5eb95df829b0dce48a6d57633 data/resourcefish/advancement/recipes/m
 d3425aef90af819fd0cb9d6596b7c5bb7285bf7f data/resourcefish/advancement/recipes/misc/depth_upgrade_2.json
 034a60fbc5c7b5c92c5916394491bd6f47ebe73c data/resourcefish/advancement/recipes/misc/depth_upgrade_3.json
 9a69f9e9dd6201e4500f21dda040dc7895124b96 data/resourcefish/advancement/recipes/misc/ender_fish_food.json
+875a93746bcdbe37dec48b917c13d8398adef951 data/resourcefish/advancement/recipes/misc/infusing_tank.json
 b0dc839bd11f37ed552b12a51a40a1186ce70833 data/resourcefish/advancement/recipes/misc/infusing_upgrade.json
 bc2cea33651cc52a546b8b3870fe3e119ffa8d0f data/resourcefish/advancement/recipes/misc/metallic_fish_food.json
 f9291d7b837a295a944513c7bfb8944b9caf0bd2 data/resourcefish/advancement/recipes/misc/nether_fish_food.json
@@ -284,6 +286,7 @@ a3baed56b079e1a66c29e9ae5c0bd93e8f6771b3 data/resourcefish/recipe/breeding/water
 1596337d1634ac660ae9e43eff855f4394e295c8 data/resourcefish/recipe/breeding/wood.json
 2b7dc078c425549bda650fce975bb77dd3b3e2d9 data/resourcefish/recipe/breeding/zinc.json
 7d3400f691825f3552929f46ce146a88125ab529 data/resourcefish/recipe/breeding/zombie.json
+b197b16dd500f29d96cc80951940ce4b02abbfd9 data/resourcefish/recipe/breeding_tank.json
 ed42bbcd143c0a959b526514701942b208fcbe57 data/resourcefish/recipe/breeding_upgrade.json
 066b53a0044775132ba8ac48aaf915f9672b1fb5 data/resourcefish/recipe/caviar/aluminum.json
 31cdca6e744366e0a2bf447cf59fa65192b40420 data/resourcefish/recipe/caviar/amethyst.json
@@ -435,6 +438,7 @@ dad0bec26af3d544b81fc698cd7877c6ae4b9fb7 data/resourcefish/recipe/infusing/white
 7fcee3a02240027c47b8609f4b05fe6960a73523 data/resourcefish/recipe/infusing/yellow.json
 afb6c86bcb62cfa6b47686e689f95300a5c4e97a data/resourcefish/recipe/infusing/zinc.json
 19860379a85a1ddfceeebaa3a04ecc29524c6d12 data/resourcefish/recipe/infusing/zombie.json
+8f24042384362bdf821cec311db2042467dfe48a data/resourcefish/recipe/infusing_tank.json
 bf79fad13df251d34b22a093d2970fd0eff31925 data/resourcefish/recipe/infusing_upgrade.json
 8a8370e65aba91454adc4f463b3472b24034d432 data/resourcefish/recipe/metallic_fish_food.json
 4a1a9507f5882eb4a4d5c880e37dd2159ff1ee8d data/resourcefish/recipe/nether_fish_food.json

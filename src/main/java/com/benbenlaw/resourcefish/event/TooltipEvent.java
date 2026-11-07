@@ -26,9 +26,12 @@ public class TooltipEvent {
     public static void onTooltipEvent(RenderTooltipEvent.GatherComponents event) {
         ItemStack stack = event.getItemStack();
 
-        if (stack.is(ResourceFishBlocks.AQUARIUM.get().asItem())) {
+        String key = stack.is(ResourceFishBlocks.BREEDING_TANK.get().asItem()) ? "tooltip.resourcefish.breeding_tank"
+                : stack.is(ResourceFishBlocks.INFUSING_TANK.get().asItem()) ? "tooltip.resourcefish.infusing_tank"
+                : stack.is(ResourceFishBlocks.AQUARIUM.get().asItem()) ? "tooltip.resourcefish.aquarium" : null;
+        if (key != null) {
             if (Screen.hasShiftDown()) {
-                event.getTooltipElements().add(1, Either.left(Component.translatable("tooltip.resourcefish.aquarium").withStyle(ChatFormatting.YELLOW)));
+                event.getTooltipElements().add(1, Either.left(Component.translatable(key).withStyle(ChatFormatting.YELLOW)));
             } else {
                 event.getTooltipElements().add(1, Either.left(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW)));
             }

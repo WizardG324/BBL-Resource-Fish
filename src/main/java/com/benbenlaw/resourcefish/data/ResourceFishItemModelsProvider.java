@@ -42,6 +42,8 @@ public class ResourceFishItemModelsProvider extends ItemModelProvider {
         simpleItem(ResourceFishItems.ENDER_FISH_FOOD);
 
         simpleBlockItem(ResourceFishBlocks.AQUARIUM.get());
+        simpleBlockItem(ResourceFishBlocks.BREEDING_TANK.get());
+        simpleBlockItem(ResourceFishBlocks.INFUSING_TANK.get());
     }
 
     private void simpleItem(DeferredItem<Item> item) {

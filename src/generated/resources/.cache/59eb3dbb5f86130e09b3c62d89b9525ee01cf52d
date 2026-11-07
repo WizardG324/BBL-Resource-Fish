@@ -1,4 +1,6 @@
-// 1.21.1	2026-08-16T08:47:24.2505652	Loot Tables
+// 1.21.1	2026-11-07T11:37:37.6018943	Loot Tables
 bd00aff5ef5e019ec4c89a385290557219782674 data/resourcefish/loot_table/blocks/aquarium.json
+5645265a2c03f336992299eaafb180df1a2146bf data/resourcefish/loot_table/blocks/breeding_tank.json
 22d68e0fc70f02875befefdbdbbb31262631ff04 data/resourcefish/loot_table/blocks/caviar_processor.json
+4c700bf77b038c80209790877bda7269e9fa8058 data/resourcefish/loot_table/blocks/infusing_tank.json
 000686a57a2e8474e8f498855527f041f6a29b73 data/resourcefish/loot_table/blocks/tank_controller.json

@@ -24,6 +24,8 @@ public class ResourceFishBlockTags extends BlockTagsProvider {
                 .add(ResourceFishBlocks.TANK_CONTROLLER.get())
                 .add(ResourceFishBlocks.CAVIAR_PROCESSOR.get())
                 .add(ResourceFishBlocks.AQUARIUM.get())
+                .add(ResourceFishBlocks.BREEDING_TANK.get())
+                .add(ResourceFishBlocks.INFUSING_TANK.get())
         ;
 
 
