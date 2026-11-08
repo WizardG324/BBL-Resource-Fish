@@ -2,6 +2,8 @@
   "values": [
     "resourcefish:tank_controller",
     "resourcefish:caviar_processor",
-    "resourcefish:aquarium"
+    "resourcefish:aquarium",
+    "resourcefish:breeding_tank",
+    "resourcefish:infusing_tank"
   ]
 }

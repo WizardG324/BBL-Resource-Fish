@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "resourcefish:aquarium"
+    },
+    "B": {
+      "item": "resourcefish:infusing_upgrade"
+    }
+  },
+  "pattern": [
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resourcefish:infusing_tank"
+  }
+}

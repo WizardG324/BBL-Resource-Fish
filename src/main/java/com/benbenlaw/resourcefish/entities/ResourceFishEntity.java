@@ -1,5 +1,6 @@
 package com.benbenlaw.resourcefish.entities;
 
+import com.benbenlaw.resourcefish.config.ResourceFishConfig;
 import com.benbenlaw.resourcefish.block.ResourceFishBlocks;
 import com.benbenlaw.resourcefish.block.entity.TankControllerBlockEntity;
 import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
@@ -399,6 +400,10 @@ public class ResourceFishEntity extends AbstractSchoolingFish  {
         if (spawnType == MobSpawnType.BUCKET) {
             return true;
         }
+
+        if ((spawnType == MobSpawnType.NATURAL || spawnType == MobSpawnType.CHUNK_GENERATION)
+                && !ResourceFishConfig.NATURAL_SPAWNING.get())
+            return false;
 
         if (!level.getFluidState(pos).is(FluidTags.WATER)) return false;
 

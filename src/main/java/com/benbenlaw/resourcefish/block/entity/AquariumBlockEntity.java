@@ -16,6 +16,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -85,18 +86,25 @@ public class AquariumBlockEntity extends SyncableBlockEntity {
             contents.setItem(i, inventory.getStackInSlot(i));
         Containers.dropContents(level, worldPosition, contents);
 
-        ResourceType type = getFishType();
-        if (type == ResourceType.NONE)
-            return;
+        releaseFish(level, worldPosition, getFishType());
+    }
 
-        level.setBlock(worldPosition, Blocks.WATER.defaultBlockState(), Block.UPDATE_ALL);
-
-        ResourceFishEntity fish = new ResourceFishEntity(ResourceFishEntities.RESOURCE_FISH.get(), level);
-        fish.setResourceType(type);
-        fish.setFromBucket(true);
-        fish.moveTo(worldPosition.getX() + 0.5D, worldPosition.getY() + 0.5D, worldPosition.getZ() + 0.5D,
-                level.getRandom().nextFloat() * 360.0F, 0.0F);
-        level.addFreshEntity(fish);
+    public static void releaseFish(Level level, BlockPos pos, ResourceType... types) {
+        boolean placedWater = false;
+        for (ResourceType type : types) {
+            if (type == ResourceType.NONE)
+                continue;
+            if (!placedWater) {
+                level.setBlock(pos, Blocks.WATER.defaultBlockState(), Block.UPDATE_ALL);
+                placedWater = true;
+            }
+            ResourceFishEntity fish = new ResourceFishEntity(ResourceFishEntities.RESOURCE_FISH.get(), level);
+            fish.setResourceType(type);
+            fish.setFromBucket(true);
+            fish.moveTo(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+                    level.getRandom().nextFloat() * 360.0F, 0.0F);
+            level.addFreshEntity(fish);
+        }
     }
 
     @Override

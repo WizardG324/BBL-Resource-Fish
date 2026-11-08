@@ -30,7 +30,20 @@ public class ResourceFishBlockEntities {
             register("aquarium_block_entity", () -> 
                     BlockEntityType.Builder.of(AquariumBlockEntity::new, ResourceFishBlocks.AQUARIUM.get()));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BreedingTankBlockEntity>> BREEDING_TANK_BLOCK_ENTITY =
+            register("breeding_tank_block_entity", () ->
+                    BlockEntityType.Builder.of(BreedingTankBlockEntity::new, ResourceFishBlocks.BREEDING_TANK.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InfusingTankBlockEntity>> INFUSING_TANK_BLOCK_ENTITY =
+            register("infusing_tank_block_entity", () ->
+                    BlockEntityType.Builder.of(InfusingTankBlockEntity::new, ResourceFishBlocks.INFUSING_TANK.get()));
+
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
+                ResourceFishBlockEntities.BREEDING_TANK_BLOCK_ENTITY.get(), BreedingTankBlockEntity::getItemHandlerCapability);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
+                ResourceFishBlockEntities.INFUSING_TANK_BLOCK_ENTITY.get(), InfusingTankBlockEntity::getItemHandlerCapability);
+
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK,
                 ResourceFishBlockEntities.TANK_CONTROLLER_BLOCK_ENTITY.get(), TankControllerBlockEntity::getTankControllerItemHandlerSide);
 

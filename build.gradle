@@ -78,11 +78,11 @@ dependencies {
     compileOnly "curse.maven:jei-238222:5846880"
     runtimeOnly "curse.maven:jei-238222:5846880"
 
-    //One Probe
-    compileOnly "curse.maven:the-one-probe-245211:5836106"
-    runtimeOnly "curse.maven:the-one-probe-245211:5836106"
+    //Jade
+    compileOnly "curse.maven:jade-324717:8591319"
+    runtimeOnly "curse.maven:jade-324717:8591319"
 
-    //One Probe
+    //JourneyMap
     compileOnly "curse.maven:journeymap-32274:6689206"
     runtimeOnly "curse.maven:journeymap-32274:6689206"
 

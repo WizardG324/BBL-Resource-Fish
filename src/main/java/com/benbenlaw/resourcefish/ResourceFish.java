@@ -11,7 +11,9 @@ import com.benbenlaw.resourcefish.item.ResourceFishDataComponents;
 import com.benbenlaw.resourcefish.item.ResourceFishItems;
 import com.benbenlaw.resourcefish.network.ResourceFishNetworking;
 import com.benbenlaw.resourcefish.recipe.ResourceFishRecipes;
+import com.benbenlaw.resourcefish.block.entity.BreedingTankBlockEntity;
 import com.benbenlaw.resourcefish.renderer.AquariumRenderer;
+import com.benbenlaw.resourcefish.util.ResourceType;
 import com.benbenlaw.resourcefish.renderer.ResourceFishRenderer;
 import com.benbenlaw.resourcefish.screen.CaviarProcessorScreen;
 import com.benbenlaw.resourcefish.screen.ResourceFishMenuTypes;
@@ -24,6 +26,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import com.benbenlaw.resourcefish.config.ResourceFishConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -42,6 +46,8 @@ public class ResourceFish{
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
 
     public ResourceFish(final IEventBus modEventBus, final ModContainer modContainer) {
+
+        modContainer.registerConfig(ModConfig.Type.SERVER, ResourceFishConfig.SPEC, "bbl/resourcefish-server.toml");
 
         ResourceFishCreativeTab.CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -92,7 +98,12 @@ public class ResourceFish{
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ResourceFishEntities.RESOURCE_FISH.get(), ResourceFishRenderer::new);
-            event.registerBlockEntityRenderer(ResourceFishBlockEntities.AQUARIUM_BLOCK_ENTITY.get(), AquariumRenderer::new);
+            event.registerBlockEntityRenderer(ResourceFishBlockEntities.AQUARIUM_BLOCK_ENTITY.get(),
+                    context -> new AquariumRenderer<>(1, 1, aquarium -> new ResourceType[] { aquarium.getFishType() }));
+            event.registerBlockEntityRenderer(ResourceFishBlockEntities.BREEDING_TANK_BLOCK_ENTITY.get(),
+                    context -> new AquariumRenderer<>(5, 2, BreedingTankBlockEntity::getRenderedFish));
+            event.registerBlockEntityRenderer(ResourceFishBlockEntities.INFUSING_TANK_BLOCK_ENTITY.get(),
+                    context -> new AquariumRenderer<>(1, 1, tank -> new ResourceType[] { tank.getFish() }));
         }
 
         @SubscribeEvent

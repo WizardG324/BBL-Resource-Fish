@@ -30,6 +30,8 @@ public class ResourceFishCreativeTab {
                 //Items and Blocks
                 output.accept(ResourceFishBlocks.NEST.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishBlocks.AQUARIUM.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishBlocks.BREEDING_TANK.get().asItem().getDefaultInstance());
+                output.accept(ResourceFishBlocks.INFUSING_TANK.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishBlocks.TANK_CONTROLLER.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishBlocks.CAVIAR_PROCESSOR.get().asItem().getDefaultInstance());
                 output.accept(ResourceFishItems.DEPTH_UPGRADE_1.get().asItem().getDefaultInstance());
