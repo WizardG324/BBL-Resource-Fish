@@ -44,7 +44,7 @@ public class InfusingTankBlock extends BreedingTankBlock {
 
         ResourceType old = tank.takeFish();
         tank.addFish(held);
-        swap(player, hand, item, AquariumBlock.filledBucketFor(old), level, pos);
+        swap(player, hand, item, AquariumBlock.filledBucketFor(old, AquariumBlock.emptyBucketFor(item)), level, pos);
         return ItemInteractionResult.SUCCESS;
     }
 }

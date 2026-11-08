@@ -17,7 +17,6 @@ import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -60,7 +59,7 @@ public class BreedingTankBlock extends BaseEntityBlock {
         if (item.isEmpty() || !(level.getBlockEntity(pos) instanceof FishTank tank))
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         ResourceType held = AquariumBlock.bucketedFishType(item);
-        boolean bucket = item.is(Items.BUCKET) || item.is(Items.WATER_BUCKET);
+        boolean bucket = AquariumBlock.catchesFish(item);
         // Not a fish, bucket, or recipe input.
         if (held == ResourceType.NONE && !bucket && !tank.getInventory().isItemValid(0, item))
             return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
@@ -78,7 +77,7 @@ public class BreedingTankBlock extends BaseEntityBlock {
             ResourceType removed = tank.takeFish();
             if (removed == ResourceType.NONE)
                 return ItemInteractionResult.FAIL;
-            swap(player, hand, item, AquariumBlock.filledBucketFor(removed), level, pos);
+            swap(player, hand, item, AquariumBlock.filledBucketFor(removed, item), level, pos);
             return ItemInteractionResult.SUCCESS;
         }
 
