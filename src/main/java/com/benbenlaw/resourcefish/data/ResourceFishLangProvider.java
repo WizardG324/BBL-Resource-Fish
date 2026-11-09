@@ -66,9 +66,9 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addRecipeTranslation("fish_drops", "Fish Drops");
 
         //Tooltips
-        addTooltipTranslation("depth_upgrade_1", "Increases tank depth by 1 (above and below)");
-        addTooltipTranslation("depth_upgrade_2", "Increases tank depth by 2 (above and below)");
-        addTooltipTranslation("depth_upgrade_3", "Increases tank depth by 3 (above and below)");
+        addTooltipTranslation("depth_upgrade_1", "Increases tank depth by 1 (above and below). A formed Aquarium holds 18 fish");
+        addTooltipTranslation("depth_upgrade_2", "Increases tank depth by 2 (above and below). A formed Aquarium holds 27 fish");
+        addTooltipTranslation("depth_upgrade_3", "Increases tank depth by 3 (above and below). A formed Aquarium holds 36 fish");
         addTooltipTranslation("width_upgrade_1", "Increases tank width by 1 (all sides)");
         addTooltipTranslation("width_upgrade_2", "Increases tank width by 2 (all sides)");
         addTooltipTranslation("width_upgrade_3", "Increases tank width by 3 (all sides)");
@@ -79,12 +79,13 @@ public class ResourceFishLangProvider extends LanguageProvider {
         addTooltipTranslation("breeding_upgrade", "Allows the Tank to breed fish. When installed fish will not produce caviar");
         addTooltipTranslation("infusing_upgrade", "Allows the Tank to infuse fish. When installed fish will not produce caviar");
         addTooltipTranslation("round_robin_upgrade", "Items inserted into the Caviar Processor will be distributed evenly across all input slots");
-        addTooltipTranslation("aquarium", "Use a Bucket with a Resource Fish inside to store and produce Caviar");
+        addTooltipTranslation("aquarium", "Use a Bucket with a Resource Fish inside to store and produce Caviar. Build a 3x3x3 of Aquariums (with no more than 9 fish in them) to form a tank holding 9 fish, plus 9 per Depth Upgrade tier (sneak-click with an empty hand to take the upgrade out)");
         addTooltipTranslation("breeding_tank", "Holds 2 Resource Fish to breed. Right click with breeding food to feed, and with a bucket to take out a bred fish(or parents). Empty hand collects bones.");
         addTooltipTranslation("infusing_tank", "Holds 1 Resource Fish to infuse. Right click with the infusing items to input them, and with a bucket to take the fish out. Empty hand collects bones, sneak to take back the items.");
 
         //Jade
         add("jade.resourcefish.fish", "Fish: %s");
+        add("jade.resourcefish.tank", "Tank: %s / %s fish");
         add("jade.resourcefish.parents", "Parents: %s");
         add("jade.resourcefish.bred", "Bred: %s");
         add("config.jade.plugin_resourcefish.fish_tanks", "Fish Tank Contents");

@@ -55,7 +55,7 @@ public class AquariumRenderer<T extends BlockEntity> implements BlockEntityRende
         }
     }
 
-    private void renderFish(T be, Level level, int index, ResourceType[] types, float partialTick, PoseStack pose,
+    protected void renderFish(T be, Level level, int index, ResourceType[] types, float partialTick, PoseStack pose,
                             MultiBufferSource buffers, int packedLight) {
         ResourceFishEntity fish = getOrCreate(level, index, types[index]);
 
@@ -68,19 +68,8 @@ public class AquariumRenderer<T extends BlockEntity> implements BlockEntityRende
         // tickCount feeds the fish's built-in sinusoidal sway (see ResourceFishRenderer#setupRotations).
         fish.tickCount = (int) (time + phase);
 
-        boolean fry = index >= adults;
-        // each group (adults, fry) spreads evenly around its own ring
-        int groupSize = fry ? Math.min(types.length, dummies.length) - adults : Math.min(types.length, adults);
-        int slot = fry ? index - adults : index;
-
         pose.pushPose();
-        pose.translate(0.5D, fry ? 0.08D : 0.45D, 0.5D);
-        float speed = fry ? -3.0F : 2.0F; // fry circle the other way, a bit quicker
-        pose.mulPose(Axis.YP.rotationDegrees((age * speed + 360.0F * slot / groupSize) % 360.0F));
-        float scale = fry ? 0.25F : groupSize == 1 ? 0.6F : 0.45F;
-        double radius = fry ? 0.28D : groupSize == 1 ? 0.0D : 0.2D;
-        pose.translate(radius, Mth.sin(age * 0.1F + index) * (fry ? 0.02F : 0.05F), 0.0D); // gentle bob
-        pose.scale(scale, scale, scale);
+        place(be, index, types, age, pose);
 
         EntityRenderDispatcher erd = Minecraft.getInstance().getEntityRenderDispatcher();
         erd.setRenderShadow(false);
@@ -88,6 +77,26 @@ public class AquariumRenderer<T extends BlockEntity> implements BlockEntityRende
         erd.setRenderShadow(true);
 
         pose.popPose();
+    }
+
+    protected void place(T be, int index, ResourceType[] types, float age, PoseStack pose) {
+        boolean fry = index >= adults;
+        // each group (adults, fry) spreads evenly around its own ring
+        int groupSize = fry ? Math.min(types.length, dummies.length) - adults : Math.min(types.length, adults);
+        int slot = fry ? index - adults : index;
+
+        pose.translate(0.5D, fry ? 0.08D : 0.45D, 0.5D);
+        float speed = fry ? -3.0F : 2.0F; // fry circle the other way, a bit quicker
+        pose.mulPose(Axis.YP.rotationDegrees((age * speed + 360.0F * slot / groupSize) % 360.0F));
+        float scale = fry ? 0.25F : groupSize == 1 ? 0.6F : 0.45F;
+        double radius = fry ? 0.28D : groupSize == 1 ? 0.0D : 0.2D;
+        pose.translate(radius, Mth.sin(age * 0.1F + index) * (fry ? 0.02F : 0.05F), 0.0D); // gentle bob
+        pose.scale(scale, scale, scale);
+    }
+
+    @Override
+    public int getViewDistance() {
+        return 32; // could make this a client config option in the future
     }
 
     private ResourceFishEntity getOrCreate(Level level, int index, ResourceType type) {

@@ -3,6 +3,9 @@ Resource Fish
 bucket texture use the fish
 Sulfur, Fluorite, Cinnabar missing at the moment will add later
 
+1.5.4
+- Added a multiblock Aquarium that forms when a 3x3x3 of aquariums is placed, and can be upgraded to hold up to 36 fish
+
 1.5.3
 - Added the Fish Breeding Tank, a single block used to breed fish
 - Added the Fish Infusing Tank, a block similar to the breeding tank, but instead infuses fish

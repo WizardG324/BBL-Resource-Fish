@@ -13,6 +13,7 @@ import com.benbenlaw.resourcefish.network.ResourceFishNetworking;
 import com.benbenlaw.resourcefish.recipe.ResourceFishRecipes;
 import com.benbenlaw.resourcefish.block.entity.BreedingTankBlockEntity;
 import com.benbenlaw.resourcefish.renderer.AquariumRenderer;
+import com.benbenlaw.resourcefish.renderer.AquariumTankRenderer;
 import com.benbenlaw.resourcefish.util.ResourceType;
 import com.benbenlaw.resourcefish.renderer.ResourceFishRenderer;
 import com.benbenlaw.resourcefish.screen.CaviarProcessorScreen;
@@ -99,7 +100,7 @@ public class ResourceFish{
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ResourceFishEntities.RESOURCE_FISH.get(), ResourceFishRenderer::new);
             event.registerBlockEntityRenderer(ResourceFishBlockEntities.AQUARIUM_BLOCK_ENTITY.get(),
-                    context -> new AquariumRenderer<>(1, 1, aquarium -> new ResourceType[] { aquarium.getFishType() }));
+                    context -> new AquariumTankRenderer());
             event.registerBlockEntityRenderer(ResourceFishBlockEntities.BREEDING_TANK_BLOCK_ENTITY.get(),
                     context -> new AquariumRenderer<>(5, 2, BreedingTankBlockEntity::getRenderedFish));
             event.registerBlockEntityRenderer(ResourceFishBlockEntities.INFUSING_TANK_BLOCK_ENTITY.get(),

@@ -41,6 +41,8 @@ public class DataGenerators {
         ResourceFishItemTags itemTags = new ResourceFishItemTags(packOutput, lookupProvider, blockTags, event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), itemTags);
 
+        generator.addProvider(event.includeClient(), new ResourceFishBlockStateProvider(packOutput, event.getExistingFileHelper()));
+
         generator.addProvider(event.includeClient(), new ResourceFishItemModelsProvider(packOutput, event.getExistingFileHelper()));
 
         generator.addProvider(event.includeClient(), new ResourceFishLangProvider(packOutput, event.getExistingFileHelper()));

@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "part=0": {
+      "model": "resourcefish:block/aquarium"
+    },
+    "part=1": {
+      "model": "resourcefish:block/aquarium_tank/0_0_0"
+    },
+    "part=10": {
+      "model": "resourcefish:block/aquarium_tank/0_0_1"
+    },
+    "part=11": {
+      "model": "resourcefish:block/aquarium_tank/1_0_1"
+    },
+    "part=12": {
+      "model": "resourcefish:block/aquarium_tank/2_0_1"
+    },
+    "part=13": {
+      "model": "resourcefish:block/aquarium_tank/0_1_1"
+    },
+    "part=14": {
+      "model": "resourcefish:block/aquarium_tank/1_1_1"
+    },
+    "part=15": {
+      "model": "resourcefish:block/aquarium_tank/2_1_1"
+    },
+    "part=16": {
+      "model": "resourcefish:block/aquarium_tank/0_2_1"
+    },
+    "part=17": {
+      "model": "resourcefish:block/aquarium_tank/1_2_1"
+    },
+    "part=18": {
+      "model": "resourcefish:block/aquarium_tank/2_2_1"
+    },
+    "part=19": {
+      "model": "resourcefish:block/aquarium_tank/0_0_2"
+    },
+    "part=2": {
+      "model": "resourcefish:block/aquarium_tank/1_0_0"
+    },
+    "part=20": {
+      "model": "resourcefish:block/aquarium_tank/1_0_2"
+    },
+    "part=21": {
+      "model": "resourcefish:block/aquarium_tank/2_0_2"
+    },
+    "part=22": {
+      "model": "resourcefish:block/aquarium_tank/0_1_2"
+    },
+    "part=23": {
+      "model": "resourcefish:block/aquarium_tank/1_1_2"
+    },
+    "part=24": {
+      "model": "resourcefish:block/aquarium_tank/2_1_2"
+    },
+    "part=25": {
+      "model": "resourcefish:block/aquarium_tank/0_2_2"
+    },
+    "part=26": {
+      "model": "resourcefish:block/aquarium_tank/1_2_2"
+    },
+    "part=27": {
+      "model": "resourcefish:block/aquarium_tank/2_2_2"
+    },
+    "part=3": {
+      "model": "resourcefish:block/aquarium_tank/2_0_0"
+    },
+    "part=4": {
+      "model": "resourcefish:block/aquarium_tank/0_1_0"
+    },
+    "part=5": {
+      "model": "resourcefish:block/aquarium_tank/1_1_0"
+    },
+    "part=6": {
+      "model": "resourcefish:block/aquarium_tank/2_1_0"
+    },
+    "part=7": {
+      "model": "resourcefish:block/aquarium_tank/0_2_0"
+    },
+    "part=8": {
+      "model": "resourcefish:block/aquarium_tank/1_2_0"
+    },
+    "part=9": {
+      "model": "resourcefish:block/aquarium_tank/2_2_0"
+    }
+  }
+}

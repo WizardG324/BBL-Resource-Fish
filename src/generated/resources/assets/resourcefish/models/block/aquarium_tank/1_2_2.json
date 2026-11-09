@@ -1,0 +1,84 @@
+{
+  "children": {
+    "glass": {
+      "elements": [
+        {
+          "faces": {
+            "south": {
+              "cullface": "south",
+              "texture": "#glass",
+              "uv": [
+                1.0,
+                0.0,
+                15.0,
+                15.0
+              ]
+            },
+            "up": {
+              "cullface": "up",
+              "texture": "#glass",
+              "uv": [
+                1.0,
+                1.0,
+                15.0,
+                16.0
+              ]
+            }
+          },
+          "from": [
+            0,
+            0,
+            0
+          ],
+          "to": [
+            16,
+            16,
+            16
+          ]
+        }
+      ],
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "glass": "minecraft:block/glass"
+      }
+    },
+    "water": {
+      "elements": [
+        {
+          "faces": {
+            "south": {
+              "texture": "#water",
+              "tintindex": 0
+            },
+            "up": {
+              "texture": "#water",
+              "tintindex": 0
+            }
+          },
+          "from": [
+            0,
+            0,
+            0
+          ],
+          "to": [
+            16,
+            14,
+            15
+          ]
+        }
+      ],
+      "render_type": "minecraft:translucent",
+      "textures": {
+        "water": "minecraft:block/water_still"
+      }
+    }
+  },
+  "item_render_order": [
+    "glass",
+    "water"
+  ],
+  "loader": "neoforge:composite",
+  "textures": {
+    "particle": "minecraft:block/glass"
+  }
+}
